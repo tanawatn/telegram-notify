@@ -1,0 +1,50 @@
+# telegram-notify
+telegram-notify by TN
+
+ทำ BOT แจ้งเตือนในกลุ่ม telegram
+
+1.เพิ่ม BotFather เป็นเพื่อน
+  1.1 เปิดแอป Telegram แล้วค้นหา @BotFather แล้วเริ่มคุยกับ BotFather
+  1.2 ลองพิม /start เพื่อดูคำสั่ง bot ต่างๆ
+
+2.สร้าง BOT ของเรา
+  2.1 คุยกับ BotFather 
+    เรา : พิมพ์ /newbot 
+    BotFather : จะตอบว่า Alright, a new bot. How are we going to call it? Please choose a name for your bot.
+    เรา : พิมพ์ชื่อบอทเป็นภาษาอังกฤษเช่น tnbot
+    BotFather : Good. Now let's choose a username for your bot. It must end in `bot`. Like this, for example: TetrisBot or tetris_bot.  
+    เรา : พิมพ์ username บอทเป็นภาษาอังกฤษเช่น tnbot_user
+    BotFather : Done! Congratulations on your new bot..... Use this token to access the HTTP API:
+                "22283882734:FVDDasasDDFFzM0wpnXMjeAx48bg-zTtA223DDASD"
+                Keep your token secure and store it safely, it can be used by anyone to control your bot.
+                For a description of the Bot API, see this page: https://core.telegram.org/bots/api
+
+  2.2 ให้เราเก็บ token ที่ bot ให้มา เช่นตัวอย่างด้านบน 22283882734:FVDDasasDDFFzM0wpnXMjeAx48bg-zTtA223DDASD
+
+3.สร้างกลุ่มที่ต้องการแจ้งเตือนและเพิ่ม Bot เข้าไป
+  3.1 เพิ่มบอทที่สร้างไว้ในกลุ่มนั้น (ต้องค้นหาจากชื่อ username ที่ลงท้ายด้วย bot)
+  3.2 ตั้งสิทธิ์ให้บอทอย่างน้อยสามารถ อ่านและส่งข้อความได้
+
+4.หา chat_id ของกลุ่ม
+  4.1 ไปที่เบราว์เซอร์ ไปที่ https://api.telegram.org/bot<your_bot_token>/getUpdates 
+       <your_bot_token> คือ tokenที่ได้จากสร้าง bot ข้อ 2.1 
+      ตัวอย่าง https://api.telegram.org/bot22283882734:FVDDasasDDFFzM0wpnXMjeAx48bg-zTtA223DDASD/getUpdates 
+  4.2 ให้เราลองพิมพ์ข้อความอะไรก็ได้ไปในกลุ่มที่สร้างขึ้น
+  4.3 ไปที่บราวเซฮ และ รีเฟรช https://api.telegram.org/bot22283882734:FVDDasasDDFFzM0wpnXMjeAx48bg-zTtA223DDASD/getUpdates  อีกครั้ง
+  4.4 สังเกตุ json ที่แสดง
+      {
+        "message": {
+          "chat": {
+            "id": -1001234567890,
+            "title": "ชื่อกลุ่ม",
+            ...
+          },
+          ...
+        }
+      }
+
+      -1001234567890 คือ id กลุ่มที่เราสร้าง
+
+5.นำ group id ไปใช้ใน PHP
+
+  
